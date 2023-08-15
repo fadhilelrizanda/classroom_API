@@ -2,6 +2,7 @@ const routes = require("./routes/routes");
 const roomstat = require("./routes/roomstat");
 const classRoutes = require("./routes/class");
 const acStatRoutes = require("./routes/acstat");
+const relayStatRoutes = require("./routes/relaystat");
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
@@ -32,6 +33,7 @@ app.use("/roomstat", roomstat);
 app.use("/acstat", acStatRoutes);
 app.use("/api", routes);
 app.use("/class", classRoutes);
+app.use("/relaystat", relayStatRoutes);
 app.listen(5000, () => {
   console.log(`Server Started at ${5000}`);
 });
