@@ -60,14 +60,34 @@ const relayStatSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const socketSchema = new mongoose.Schema(
+  {
+    s1: {
+      required: true,
+      type: Number,
+    },
+    s2: {
+      required: true,
+      type: Number,
+    },
+    s3: {
+      required: true,
+      type: Number,
+    },
+  },
+  { timestamps: true }
+);
+
 const peopleDetectModel = mongoose.model("PeopleDetect", peopleDetectSchema);
 const roomstatModel = mongoose.model("roomStat", roomStatSchema);
 const acStatModel = mongoose.model("acStat", acStatSchema);
 const relayStatModel = mongoose.model("relayStat", relayStatSchema);
+const socketModel = mongoose.model("socketStat", socketSchema);
 
 module.exports = {
   peopleDetectModel,
   roomstatModel,
   acStatModel,
   relayStatModel,
+  socketModel,
 };
