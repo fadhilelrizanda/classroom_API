@@ -7,7 +7,7 @@ module.exports = router;
 
 //Post Method
 router.post("/post", async (req, res) => {
-  const data = new socketModelModel({
+  const data = new socketModel({
     name: req.body.name,
     age: req.body.age,
   });
@@ -23,7 +23,7 @@ router.post("/post", async (req, res) => {
 //Get all Method
 router.get("/getAll", async (req, res) => {
   try {
-    const data = await socketModelModel.find();
+    const data = await socketModel.find();
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -33,7 +33,7 @@ router.get("/getAll", async (req, res) => {
 //Get by ID Method
 router.get("/getOne/:id", async (req, res) => {
   try {
-    const data = await socketModelModel.findById(req.params.id);
+    const data = await socketModel.findById(req.params.id);
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -46,7 +46,7 @@ router.patch("/update/:id", async (req, res) => {
     const updatedData = req.body;
     const options = { new: true };
 
-    const result = await socketModelModel.findByIdAndUpdate(
+    const result = await socketModel.findByIdAndUpdate(
       id,
       updatedData,
       options
@@ -63,7 +63,7 @@ router.patch("/update/:id", async (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const data = await socketModelModel.findByIdAndDelete(id);
+    const data = await socketModel.findByIdAndDelete(id);
     res.send(`Document with ${data.name} has been deleted..`);
   } catch (error) {
     res.status(400).json({ message: error.message });
