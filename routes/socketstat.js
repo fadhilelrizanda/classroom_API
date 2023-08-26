@@ -8,8 +8,9 @@ module.exports = router;
 //Post Method
 router.post("/post", async (req, res) => {
   const data = new socketModel({
-    name: req.body.name,
-    age: req.body.age,
+    s1: req.body.s1,
+    s2: req.body.s2,
+    s3: req.body.s3,
   });
 
   try {
