@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const { socketModelModel } = require("../model/model");
+const { socketModel } = require("../model/model");
 
 module.exports = router;
 
