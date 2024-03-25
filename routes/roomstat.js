@@ -80,3 +80,12 @@ router.delete("/delete/:id", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+router.delete("/deleteAll", async (req, res) => {
+  try {
+    const result = await roomstatModel.deleteMany({});
+    res.send(`${result.deletedCount} documents have been deleted.`);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
