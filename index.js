@@ -11,7 +11,10 @@ const relayStatRoutes = require("./routes/relaystat");
 const socketRoutes = require("./routes/socketstat");
 
 const mongoString = process.env.DATABASE_URL;
-mongoose.connect(mongoString);
+mongoose.connect(mongoString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const database = mongoose.connection;
 
 database.on("error", (error) => {
@@ -26,7 +29,7 @@ const app = express();
 
 // Configure CORS
 const corsOptions = {
-  origin: "*", // Allow all origins (you can specify a specific origin instead of '*')
+  origin: "https://smartclassroomweb.vercel.app", // Allow requests from this specific origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
