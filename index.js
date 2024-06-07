@@ -26,16 +26,30 @@ database.once("connected", () => {
 });
 
 const app = express();
+// Add headers before the routes are defined
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
-// Configure CORS
-const corsOptions = {
-  origin: "https://smartclassroomweb.vercel.app", // Allow requests from this specific origin
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
-  optionsSuccessStatus: 204,
-};
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
 
-app.use(cors(corsOptions));
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // Pass to next layer of middleware
+  next();
+});
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -48,9 +62,6 @@ app.use("/api", routes);
 app.use("/class", classRoutes);
 app.use("/relaystat", relayStatRoutes);
 app.use("/socketstat", socketRoutes);
-
-// Preflight OPTIONS requests handling
-app.options("*", cors(corsOptions));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
