@@ -48,7 +48,7 @@ app.use("/acstat", acStatRoutes);
 app.use("/api", routes);
 app.use("/class", classRoutes);
 app.use("/relaystat", relayStatRoutes);
-app.use("/socketstat", socketRoutes);
+app.use("/socketstat", cors(corsOptions), socketRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
