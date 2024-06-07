@@ -14,6 +14,8 @@ const mongoString = process.env.DATABASE_URL;
 mongoose.connect(mongoString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, // Increase the timeout to 5 seconds
+  socketTimeoutMS: 45000, // Set socket timeout to 45 seconds
 });
 const database = mongoose.connection;
 
