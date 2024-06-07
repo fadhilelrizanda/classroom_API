@@ -29,7 +29,7 @@ const app = express();
 
 // Configure CORS
 const corsOptions = {
-  origin: "*", // Allow requests from this specific origin
+  origin: "https://smartclassroomweb.vercel.app", // Allow requests from this specific origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
@@ -49,7 +49,12 @@ app.use("/api", routes);
 app.use("/class", classRoutes);
 app.use("/relaystat", relayStatRoutes);
 app.use("/socketstat", cors(corsOptions), socketRoutes);
-
+app.options("/socketstat", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.sendStatus(204);
+});
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server Started at ${PORT}`);
