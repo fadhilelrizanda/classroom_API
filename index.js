@@ -18,7 +18,7 @@ mongoose.connect(mongoString, {
 const database = mongoose.connection;
 
 database.on("error", (error) => {
-  console.log(error);
+  console.error("Database connection error:", error);
 });
 
 database.once("connected", () => {
@@ -36,6 +36,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Enable preflight requests for all routes
 app.use(express.json());
 
 app.get("/", (req, res) => {
