@@ -31,12 +31,11 @@ const app = express();
 const corsOptions = {
   origin: "https://smartclassroomweb.vercel.app", // Allow requests from this specific origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
+  allowedHeaders: "Content-Type,Authorization",
   optionsSuccessStatus: 204,
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Enable preflight requests for all routes
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -48,13 +47,11 @@ app.use("/acstat", acStatRoutes);
 app.use("/api", routes);
 app.use("/class", classRoutes);
 app.use("/relaystat", relayStatRoutes);
-app.use("/socketstat", cors(corsOptions), socketRoutes);
-app.options("/socketstat", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.sendStatus(204);
-});
+app.use("/socketstat", socketRoutes);
+
+// Preflight OPTIONS requests handling
+app.options("*", cors(corsOptions));
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server Started at ${PORT}`);
