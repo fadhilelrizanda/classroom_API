@@ -35,7 +35,7 @@ router.get("/getLatest/:limit", async (req, res) => {
     }
 
     // Retrieve the latest documents based on the limit
-    const data = await peopleDetectModel.find().sort({ _id: -1 }).limit(limit);
+    const data = await roomstatModel.find().sort({ _id: -1 }).limit(limit);
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
