@@ -62,7 +62,7 @@ router.get("/getAll/:limit/:page", async (req, res) => {
 
 router.get("/DownloadAll", async (req, res) => {
   try {
-    const data = await relayStatModel.find();
+    const data = await peopleDetectModel.find();
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
