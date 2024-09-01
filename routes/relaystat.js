@@ -20,6 +20,26 @@ router.post("/post", async (req, res) => {
   }
 });
 
+router.get("/getLatest/:limit", async (req, res) => {
+  try {
+    // Extract the limit from URL parameters and parse it as an integer
+    const limit = parseInt(req.params.limit, 10);
+
+    // Ensure the limit is a positive integer
+    if (isNaN(limit) || limit <= 0) {
+      return res
+        .status(400)
+        .json({ message: "Limit must be a positive integer." });
+    }
+
+    // Retrieve the latest documents based on the limit
+    const data = await relayStatModel.find().sort({ _id: -1 }).limit(limit);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.get("/getLatest", async (req, res) => {
   try {
     const data = await relayStatModel.find().sort({ _id: -1 }).limit(1);
