@@ -40,14 +40,26 @@ router.get("/getLatest/:limit", async (req, res) => {
 });
 
 //Get all Method
-router.get("/getAll", async (req, res) => {
+router.get("/getAll/:limit/:page", async (req, res) => {
   try {
-    const data = await peopleDetectModel.find();
-    res.json(data);
+    const limit = parseInt(req.params.limit); // Number of items per page
+    const page = parseInt(req.params.page); // Current page number
+    const skip = (page - 1) * limit; // Calculate the number of items to skip
+
+    const data = await peopleDetectModel.find().skip(skip).limit(limit);
+    const totalItems = await peopleDetectModel.countDocuments(); // Count total items for pagination
+
+    res.json({
+      items: data,
+      totalItems, // Total number of items
+      totalPages: Math.ceil(totalItems / limit), // Calculate total pages
+      currentPage: page, // Current page number
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 //Get by ID Method
 //Get by ID Method
 router.get("/getOne/:id", async (req, res) => {
