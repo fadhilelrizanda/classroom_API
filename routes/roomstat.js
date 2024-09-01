@@ -42,14 +42,16 @@ router.get("/getLatest/:limit", async (req, res) => {
   }
 });
 //Get all Method
-router.get("/getAll", async (req, res) => {
+router.get("/getAll/:limit", async (req, res) => {
   try {
-    const data = await roomstatModel.find();
+    const limit = parseInt(req.params.limit); // Get the limit from the route parameter
+    const data = await roomstatModel.find().limit(limit);
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 //Get by ID Method
 //Get by ID Method
 router.get("/getOne/:id", async (req, res) => {
