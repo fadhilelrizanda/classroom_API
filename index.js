@@ -53,7 +53,7 @@ app.use("/api", routes);
 app.use("/class", classRoutes);
 app.use("/relaystat", relayStatRoutes);
 app.use("/socketstat", socketRoutes);
-app.use("/radianheat", radianRoutes);
+app.use("/radian", radianRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
