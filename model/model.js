@@ -109,7 +109,7 @@ const roomstatModel = mongoose.model("roomStat", roomStatSchema);
 const acStatModel = mongoose.model("acStat", acStatSchema);
 const relayStatModel = mongoose.model("relayStat", relayStatSchema);
 const socketModel = mongoose.model("socketStat", socketSchema);
-const radiantHeatModel = mongoose.model("Radiant Heat", radiantHeatSchema);
+const radiantHeatModel = mongoose.model("RadianHeat", radiantHeatSchema);
 
 module.exports = {
   peopleDetectModel,
