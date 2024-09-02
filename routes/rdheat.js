@@ -8,10 +8,10 @@ module.exports = router;
 //Post Method
 router.post("/post", async (req, res) => {
   const data = new radiantHeatModel({
-    sht_temp: req.body.sht_temp,
-    sht_humid: req.body.sht_humid,
+    sTemp: req.body.sTemp,
+    sHumid: req.body.sHumid,
     wind: req.body.wind,
-    g_temp: req.body.g_temp,
+    gTemp: req.body.gTemp,
     pmv: req.body.pmv,
   });
 
