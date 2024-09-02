@@ -80,11 +80,11 @@ const socketSchema = new mongoose.Schema(
 
 const radiantHeatSchema = new mongoose.Schema(
   {
-    sTemp: {
+    stemp: {
       required: true,
       type: Number,
     },
-    sHumid: {
+    shumid: {
       required: true,
       type: Number,
     },
@@ -92,7 +92,7 @@ const radiantHeatSchema = new mongoose.Schema(
       required: true,
       type: Number,
     },
-    gTemp: {
+    gtemp: {
       required: true,
       type: Number,
     },
