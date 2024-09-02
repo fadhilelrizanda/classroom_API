@@ -9,7 +9,7 @@ const classRoutes = require("./routes/class");
 const acStatRoutes = require("./routes/acstat");
 const relayStatRoutes = require("./routes/relaystat");
 const socketRoutes = require("./routes/socketstat");
-const rHRoutes = require("./routes/radianheat");
+const radianRoutes = require("./routes/rdheat");
 
 const mongoString = process.env.DATABASE_URL;
 mongoose.connect(mongoString, {
@@ -53,7 +53,7 @@ app.use("/api", routes);
 app.use("/class", classRoutes);
 app.use("/relaystat", relayStatRoutes);
 app.use("/socketstat", socketRoutes);
-app.use("/radianheat", rHRoutes);
+app.use("/radianheat", radianRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
