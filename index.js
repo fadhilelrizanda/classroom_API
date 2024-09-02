@@ -41,7 +41,7 @@ const app = express();
 // app.use(cors(corsOptions));
 // app.options("*", cors(corsOptions)); // Enable preflight requests for all routes
 
-// app.use(express.json());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Express on Vercel");
