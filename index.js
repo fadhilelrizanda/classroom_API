@@ -9,7 +9,7 @@ const classRoutes = require("./routes/class");
 const acStatRoutes = require("./routes/acstat");
 const relayStatRoutes = require("./routes/relaystat");
 const socketRoutes = require("./routes/socketstat");
-const rHRoutes = require("./routes/radianHeat");
+const rHRoutes = require("./routes/radianheat");
 
 const mongoString = process.env.DATABASE_URL;
 mongoose.connect(mongoString, {
