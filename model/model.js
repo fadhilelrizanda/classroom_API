@@ -78,11 +78,38 @@ const socketSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const radiantHeatSchema = new mongoose.Schema(
+  {
+    sht_temp: {
+      required: true,
+      type: Number,
+    },
+    sht_humid: {
+      required: true,
+      type: Number,
+    },
+    wind: {
+      required: true,
+      type: Number,
+    },
+    g_temp: {
+      required: true,
+      type: Number,
+    },
+    pmv: {
+      required: true,
+      type: Number,
+    },
+  },
+  { timestamps: true }
+);
+
 const peopleDetectModel = mongoose.model("PeopleDetect", peopleDetectSchema);
 const roomstatModel = mongoose.model("roomStat", roomStatSchema);
 const acStatModel = mongoose.model("acStat", acStatSchema);
 const relayStatModel = mongoose.model("relayStat", relayStatSchema);
 const socketModel = mongoose.model("socketStat", socketSchema);
+const radiantHeatModel = mongoose.model("Radiant Heat", radiantHeatSchema);
 
 module.exports = {
   peopleDetectModel,
@@ -90,4 +117,5 @@ module.exports = {
   acStatModel,
   relayStatModel,
   socketModel,
+  radiantHeatModel,
 };
