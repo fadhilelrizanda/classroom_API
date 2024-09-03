@@ -62,6 +62,15 @@ router.get("/getAll/:limit/:page", async (req, res) => {
   }
 });
 
+router.get("/DownloadAll", async (req, res) => {
+  try {
+    const data = await roomstatModel.find();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 //Get by ID Method
 //Get by ID Method
 router.get("/getOne/:id", async (req, res) => {
