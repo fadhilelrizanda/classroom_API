@@ -31,15 +31,15 @@ database.once("connected", () => {
 const app = express();
 
 // // Configure CORS
-// const corsOptions = {
-//   origin: "https://smartclassroomweb.vercel.app", // Allow requests from this specific origin
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-// };
+const corsOptions = {
+  // origin: "https://smartclassroomweb.vercel.app", // Allow requests from this specific origin
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
 
-// app.use(cors(corsOptions));
-// app.options("*", cors(corsOptions)); // Enable preflight requests for all routes
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Enable preflight requests for all routes
 
 app.use(express.json());
 
